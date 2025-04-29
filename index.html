@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas de Diseño de Interfaz y Métricas de Tamaño y Función</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="logo">
+            <img src="img/Logo web.png" alt="Logo">
+        </div>
+    </header>
+    <main>
+        <h7>¡Recuerda sumar las Lineas de codigo (LOC) de tu proyecto!</h7>
+
+        <!-- 1. Productividad -->
+        <details>
+            <summary>Cálculo de Productividad</summary>
+            <div class="section">
+                <label for="loc-prod">LOC (líneas de código):</label>
+                <input type="number" id="loc-prod" min="0" value="">
+                <label for="persons-prod">Número de personas:</label>
+                <input type="number" id="persons-prod" min="1" value="">
+                <label for="days-prod">Días de trabajo:</label>
+                <input type="number" id="days-prod" min="1" value="">
+                <button id="calc-prod">Calcular</button>
+                <div id="result-prod" class="result"></div>
+            </div>
+        </details>
+
+        <!-- 2. Calidad -->
+        <details>
+            <summary>Cálculo de Calidad</summary>
+            <div class="section">
+                <label for="errors-qual">Número de errores:</label>
+                <input type="number" id="errors-qual" min="0" value="">
+                <label for="loc-qual">LOC (líneas de código):</label>
+                <input type="number" id="loc-qual" min="1" value="">
+                <button id="calc-qual">Calcular</button>
+                <div id="result-qual" class="result"></div>
+            </div>
+        </details>
+
+        <!-- 3. Eficiencia -->
+        <details>
+            <summary>Cálculo de Eficiencia (LOC por Punto de Función)</summary>
+            <div class="section">
+                <label for="loc-eff">LOC (líneas de código):</label>
+                <input type="number" id="loc-eff" min="0" value="">
+                <table id="eff-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Ejemplos</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="component-row" data-type="EE">
+                            <td>Entradas Externas (EE)</td>
+                            <td class="examples"></td>
+                            <td><button class="add-example-btn"><i class="fas fa-plus"></i></button></td>
+                        </tr>
+                        <tr class="component-row" data-type="SE">
+                            <td>Salidas Externas (SE)</td>
+                            <td class="examples"></td>
+                            <td><button class="add-example-btn"><i class="fas fa-plus"></i></button></td>
+                        </tr>
+                        <tr class="component-row" data-type="CE">
+                            <td>Consultas Externas (CE)</td>
+                            <td class="examples"></td>
+                            <td><button class="add-example-btn"><i class="fas fa-plus"></i></button></td>
+                        </tr>
+                        <tr class="component-row" data-type="ALI">
+                            <td>Archivos Lógicos Internos (ALI)</td>
+                            <td class="examples"></td>
+                            <td><button class="add-example-btn"><i class="fas fa-plus"></i></button></td>
+                        </tr>
+                        <tr class="component-row" data-type="AIE">
+                            <td>Archivos de Interfaz Externa (AIE)</td>
+                            <td class="examples"></td>
+                            <td><button class="add-example-btn"><i class="fas fa-plus"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="calc-eff">Calcular Puntos de Función y Eficiencia</button>
+                <div id="result-eff" class="result"></div>
+            </div>
+        </details>
+
+        <!-- 4. Satisfacción Usuario (SUS) -->
+        <details>
+            <summary>Métrica de Satisfacción del Usuario</summary>
+            <div class="section">
+                <div id="sus-questions">
+                    <!-- Preguntas SUS 1 a 10 -->
+                    <script>
+                        const susDiv = document.currentScript.parentElement;
+                        for (let i = 1; i <= 10; i++) {
+                            const label = document.createElement('label');
+                            label.textContent = `Pregunta ${i}`;
+                            const select = document.createElement('select');
+                            for (let v = 1; v <= 5; v++) {
+                                const opt = document.createElement('option'); opt.value = v; opt.textContent = v;
+                                select.appendChild(opt);
+                            }
+                            susDiv.appendChild(label);
+                            susDiv.appendChild(select);
+                        }
+                    </script>
+                </div>
+                <button id="add-sus-question">Añadir Pregunta</button>
+                <button id="remove-sus-question">Eliminar Última Pregunta</button>
+                <button id="calc-sus">Calcular Satisfacción</button>
+                <div id="result-sus" class="result"></div>
+                <div class="result">
+                    <strong>Interpretación Satisfacción:</strong><br>
+                    85–100: Excelente / Altamente Satisfactorio<br>
+                    70–84: Bueno / Aceptable<br>
+                    50–69: Regular / Necesita mejoras<br>
+                    &lt;50: Deficiente / Insatisfactorio
+                </div>
+            </div>
+        </details>
+        <div class="Sizedbox">
+
+        </div>
+
+        </div>
+    </main>
+
+
+</body>
+<footer id="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+        </div>
+        <div class="footer-contact">
+            <p><strong>Desarrollado por:</strong> Sebastian Andrade</p>
+            <p><strong>Correo:</strong> sebastiane-andrader@unilibre.edu.co</p>
+            <p><strong>Teléfono:</strong> +57 300 4597602</p>
+        </div>
+    </div>
+</footer>
+
+
+</html>
+
+</html>
