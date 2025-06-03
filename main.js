@@ -9,7 +9,7 @@ document.getElementById('calc-prod').addEventListener('click', () => {
     else if (prod <= 300) msg += ' Rango común.';
     else msg += ' Posible sobrecarga de trabajo.';
     document.getElementById('result-prod').textContent = msg;
-});
+}); 
 
 // 2. Calidad
 document.getElementById('calc-qual').addEventListener('click', () => {
@@ -151,3 +151,87 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+// 5. POO
+
+function mostrarLCOM() {
+  const metodos = parseInt(document.getElementById('lcom-metodos').value);
+  const atributos = parseInt(document.getElementById('lcom-atributos').value);
+  const comparten = parseInt(document.getElementById('lcom-comparten').value);
+  const resultado = calcularLCOM(metodos, atributos, comparten);
+  document.getElementById('lcom-resultado').textContent = `Resultado LCOM: ${resultado.toFixed(2)} (entre más cerca de 0, mejor cohesión)`;
+}
+
+function mostrarCBO() {
+  const cbo = parseInt(document.getElementById('cbo-clases').value);
+  const resultado = calcularCBO(cbo);
+
+  let interpretacion = "";
+  if (resultado <= 1) {
+    interpretacion = " (acoplamiento bajo, fácil de mantener)";
+  } else if (resultado <= 4) {
+    interpretacion = " (acoplamiento moderado, puede ser razonable)";
+  } else {
+    interpretacion = " (alto acoplamiento: difícil de mantener y probar)";
+  }
+
+  document.getElementById('cbo-resultado').textContent = `Resultado CBO: ${resultado} clases acopladas${interpretacion}`;
+}
+function mostrarCC() {
+  const decisiones = parseInt(document.getElementById('cc-decisiones').value);
+  const resultado = calcularCC(decisiones);
+  document.getElementById('cc-resultado').textContent = `Resultado CC: ${resultado} (<=10 es mantenible)`;
+}
+
+function calcularLCOM(metodos, atributos, metodosQueCompartenAtributos) {
+    const total = metodos * atributos;
+    if (total === 0) return 0;
+    return 1 - (metodosQueCompartenAtributos / total);
+}
+
+// 2. CBO - Acoplamiento entre objetos
+function calcularCBO(clasesAcopladas) {
+    return clasesAcopladas;
+}
+
+// 3. Complejidad Ciclomática
+function calcularCC(decisiones) {
+    return decisiones + 1;
+}
+
+// 6. Indice de madurez del software
+
+function calcularMadurez() {
+  const loc = parseFloat(document.getElementById('mi-loc').value);
+  const errores = parseInt(document.getElementById('mi-errores').value);
+  const decisiones = parseInt(document.getElementById('mi-decisiones').value);
+  const cambios = parseInt(document.getElementById('mi-cambios').value);
+  const modulos = parseInt(document.getElementById('mi-modulos').value);
+
+  if (loc <= 0 || modulos <= 0) {
+    document.getElementById('mi-resultado').textContent = "Por favor, asegúrate de que LOC y Módulos sean mayores que 0.";
+    return;
+  }
+
+  const cc = decisiones + 1;
+  const densidadErrores = errores / (loc / 1000);
+  const frecuenciaCambio = cambios / modulos;
+
+  const mi = 100 - (cc * 1.5) - (densidadErrores * 5);
+
+  let interpretacion = "";
+  if (mi >= 85) {
+    interpretacion = "Alta mantenibilidad";
+  } else if (mi >= 70) {
+    interpretacion = "Aceptable pero con margen de mejora";
+  } else {
+    interpretacion = "Baja mantenibilidad";
+  }
+
+  document.getElementById('mi-resultado').innerHTML = `
+    <strong>MI:</strong> ${mi.toFixed(2)} (${interpretacion})<br>
+    <strong>Complejidad Ciclomática:</strong> ${cc}<br>
+    <strong>Densidad de errores:</strong> ${densidadErrores.toFixed(2)} errores/KLOC<br>
+    <strong>Frecuencia de cambio:</strong> ${frecuenciaCambio.toFixed(2)} cambios/módulo
+  `;
+}

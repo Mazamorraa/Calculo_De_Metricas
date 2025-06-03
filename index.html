@@ -128,6 +128,58 @@
                 </div>
             </div>
         </details>
+
+        <!-- MÉTRICAS DE DISEÑO DE COMPONENTES POO -->
+        <details class="metric">
+            <summary> LCOM - Cohesión</summary>
+            <label>Métodos en la clase:</label>
+            <input type="number" id="lcom-metodos">
+            <label>Atributos en la clase:</label>
+            <input type="number" id="lcom-atributos">
+            <label>Métodos que comparten atributos:</label>
+            <input type="number" id="lcom-comparten">
+            <button onclick="mostrarLCOM()">Calcular LCOM</button>
+            <p id="lcom-resultado"></p>
+        </details>
+
+        <details class="metric">
+            <summary> CBO - Acoplamiento</summary>
+            <label>Número de clases acopladas:</label>
+            <input type="number" id="cbo-clases">
+            <button onclick="mostrarCBO()">Calcular CBO</button>
+            <p id="cbo-resultado"></p>
+        </details>
+
+        <details class="metric">
+            <summary>Complejidad Ciclomática</summary>
+            <label>Cantidad de decisiones (if, for, etc):</label>
+            <input type="number" id="cc-decisiones">
+            <button onclick="mostrarCC()">Calcular Complejidad</button>
+            <p id="cc-resultado"></p>
+        </details>
+
+        <details class="metric">
+            <summary>Índice de Madurez del Software</summary>
+            <label>LOC (líneas de código):</label>
+            <input type="number" id="mi-loc">
+
+            <label>Número de errores encontrados:</label>
+            <input type="number" id="mi-errores">
+
+            <label>Decisiones lógicas (if, for, etc):</label>
+            <input type="number" id="mi-decisiones">
+
+            <label>Cantidad de cambios realizados:</label>
+            <input type="number" id="mi-cambios">
+
+            <label>Número de módulos en el sistema:</label>
+            <input type="number" id="mi-modulos">
+
+            <button onclick="calcularMadurez()">Calcular Índice de Madurez</button>
+            <p id="mi-resultado"></p>
+        </details>
+
+
         <div class="Sizedbox">
 
         </div>
@@ -144,7 +196,6 @@
         <div class="footer-contact">
             <p><strong>Desarrollado por:</strong> Sebastian Andrade</p>
             <p><strong>Correo:</strong> sebastiane-andrader@unilibre.edu.co</p>
-            <p><strong>Teléfono:</strong> +57 300 4597602</p>
         </div>
     </div>
 </footer>
